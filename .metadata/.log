@@ -4,7 +4,7 @@ java.version=17.0.4
 java.vendor=Eclipse Adoptium
 BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_US
 Framework arguments:  -product org.eclipse.epp.package.java.product -keyring /Users/saahib/.eclipse_keyring
-Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.epp.package.java.product -keyring /Users/saahib/.eclipse_keyring
+Command-line arguments:  -os macosx -ws cocoa -arch -product org.eclipse.epp.package.java.product -keyring /Users/saahib/.eclipse_keyring
 
 !ENTRY org.eclipse.jface 2 0 2023-09-26 13:56:03.392
 !MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
