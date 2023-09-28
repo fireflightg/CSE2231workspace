@@ -4,7 +4,7 @@ This is our [CSE]([https://nextjs.org/](http://web.cse.ohio-state.edu/software/w
 
 ## Group work
 
-Team members: Saahib Mohammed and namin
+Team members: Saahib,Janaa,Sonu
 
 
 
