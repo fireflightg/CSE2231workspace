@@ -7,7 +7,7 @@ import components.set.Set;
  *
  */
 public abstract class SetTest {
-
+ 
     /**
      * Invokes the appropriate {@code Set} constructor for the implementation
      * under test and returns the result.
