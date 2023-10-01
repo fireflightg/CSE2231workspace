@@ -4,7 +4,7 @@ import components.set.Set1L;
 /**
  * Customized JUnit test fixture for {@code Set3a}.
  */
-public class Set3aTest extends SetTest {
+public class Set3aTest extends SetTest { 
 
     @Override
     protected final Set<String> constructorTest() {
