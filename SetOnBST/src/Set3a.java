@@ -8,7 +8,7 @@ import components.set.SetSecondary;
  * {@code Set} represented as a {@code BinaryTree} (maintained as a binary
  * search tree) of elements with implementations of primary methods.
  *
- * @param <T>
+ * @param <T> 
  *            type of {@code Set} elements
  * @mathdefinitions <pre>
  * IS_BST(
