@@ -135,12 +135,25 @@ public class Set3a<T extends Comparable<T>> extends SetSecondary<T> {
         assert t != null : "Violation of: t is not null";
         assert t.size() > 0 : "Violation of: |t| > 0";
 
-        // TODO - fill in body
+        //Disassemble the tree
+        BinaryTree<T> right = t.newInstance();
+        BinaryTree<T> left = t.newInstance();
+        T root = t.disassemble(left, right);
 
-        // This line added just to make the component compilable.
-        return null;
+        // declare variable going to return smallest with
+        T smallest = root;
+      
+        // check if there is a left subtree, if so the smallest is in it
+        if (left.height() > 0) {
+            smallest = removeSmallest(left);
+            t.assemble(root, left, right);  // reassemble tree 
+        } else {
+            //else, root is smallest, make right subtree 't'
+            t.transferFrom(right);
+        }
+
+        return smallest;
     }
-
     /**
      * Finds label {@code x} in {@code t}, removes it from {@code t}, and
      * returns it.
