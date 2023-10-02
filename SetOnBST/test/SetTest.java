@@ -68,4 +68,109 @@ public abstract class SetTest {
 
     // TODO - add test cases for constructor, add, remove, removeAny, contains, and size
 
+    /**
+     * Test remove to an empty set.
+     */
+    @Test
+    public final void testRemoveToEmpty() {
+        Set<String> test = this.createFromArgsTest("Sonu");
+        Set<String> expected = this.createFromArgsRef();
+        String removed = test.remove("Sonu");
+        String expectedRemove = "Sonu";
+
+        assertEquals(test, expected);
+        assertEquals(removed, expectedRemove);
+    }
+
+    /**
+     * Testing remove : routine.
+     */
+    @Test
+    public final void testRemove_lastName() {
+        Set<String> test = this.createFromArgsTest("Sonu", "Manoharan");
+        Set<String> expected = this.createFromArgsRef();
+        String removed = test.remove("Manoharan");
+        String expectedRemoved = "Manoharan";
+
+        assertEquals(test, expected);
+        assertEquals(removed, expectedRemoved);
+    }
+
+    /**
+     * Testing remove : routine.
+     */
+    @Test
+    public final void testRemoveRoutine() {
+        Set<String> test = this.createFromArgsTest("A");
+        Set<String> expected = this.createFromArgsRef();
+        Set<String> remove = this.createFromArgsTest("A");
+        Set<String> expectedRemoved = this.createFromArgsRef("A");
+
+        Set<String> removed = test.remove(remove);
+
+        assertEquals(test, expected);
+        assertEquals(removed, expectedRemoved);
+    }
+
+    /**
+     * Testing remove from the middle of set.
+     */
+    @Test
+    public final void testRemoveFromMiddle() {
+        Set<String> test = this.createFromArgsTest("A", "B", "C");
+        Set<String> expected = this.createFromArgsRef("A", "C");
+        Set<String> remove = this.createFromArgsTest("B");
+        Set<String> expectedRemoved = this.createFromArgsRef("B");
+
+        Set<String> removed = test.remove(remove);
+
+        assertEquals(test, expected);
+        assertEquals(removed, expectedRemoved);
+    }
+
+    /**
+     * Testing removeAny to an empty set.
+     */
+    @Test
+    public final void testRemoveAnyToEmpty() {
+        Set<String> test = this.createFromArgsTest("Sonu");
+        Set<String> expected = this.createFromArgsRef("Sonu");
+
+        String removed = test.removeAny();
+        assertEquals(true, expected.contains(removed));
+        expected.remove(removed);
+        assertEquals(test, expected);
+    }
+
+    /**
+     * Testing remove : routine.
+     */
+    @Test
+    public final void testRemoveAnyRoutine() {
+        Set<String> test = this.createFromArgsTest("CSE", "2231");
+        Set<String> expected = this.createFromArgsRef("CSE", "2231");
+        String removed = test.removeAny();
+
+        assertEquals(true, expected.contains(removed));
+        expected.remove(removed);
+        assertEquals(test, expected);
+    }
+
+    /**
+     * Testing removeAny from the middle of set.
+     */
+    @Test
+    public final void testRemoveAnyFromMiddle() {
+        Set<String> test = this.createFromArgsTest("1", "2", "3");
+        Set<String> expected = this.createFromArgsRef("1","2","3");
+        String removed = test.removeAny();
+        
+        assertEquals(true, expected.contains(removed));
+        expected.remove(removed);
+        assertEquals(test, expected);
+    }
+
+}
+
+
 }
