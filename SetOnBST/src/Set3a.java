@@ -172,7 +172,7 @@ public class Set3a<T extends Comparable<T>> extends SetSecondary<T> {
      *  labels(t) = labels(#t) \ {x}
      * </pre>
      */
-    private static <T extends Comparable<T>> T removeFromTree(BinaryTree<T> t,
+     private static <T extends Comparable<T>> T removeFromTree(BinaryTree<T> t,
             T x) {
         assert t != null : "Violation of: t is not null";
         assert x != null : "Violation of: x is not null";
@@ -190,24 +190,35 @@ public class Set3a<T extends Comparable<T>> extends SetSecondary<T> {
                 entry = removeFromTree(left, x);
 
             }
-            if (x.compareTo(r) > 0) {
+            else if (x.compareTo(r) > 0) {
                 entry = removeFromTree(right, x);
 
             }
+         
+            t.assemble(r, left, right);
 
         } else {
             BinaryTree<T> left = t.newInstance();
             BinaryTree<T> right = t.newInstance();
-            T root = t.disassemble(left, right);
-            if(right.size() > 0){
-            root = right.root();
+            entry = t.disassemble(left, right);
+            if(right.size() > 0) {
+            T root = removeSmallest(right);
             t.assemble(root, left, right);
+          
             }
-                t.transferFrom(left);
+            else {
+            	  t.transferFrom(left);
+            }
+           
+          
+          
+            
         }
         return entry;
 
     }
+
+    
 
     /**
      * Creator of initial representation.
