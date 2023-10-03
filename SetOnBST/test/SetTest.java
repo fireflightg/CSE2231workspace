@@ -1,13 +1,17 @@
+import static org.junit.Assert.assertEquals;
+
+import org.junit.Test;
+
 import components.set.Set;
 
 /**
  * JUnit test fixture for {@code Set<String>}'s constructor and kernel methods.
  *
- * @author Put your name here
+ * @author Jana Abedeljaber, Sonali Manoharan, Saahib Mohammed
  *
  */
 public abstract class SetTest {
- 
+
     /**
      * Invokes the appropriate {@code Set} constructor for the implementation
      * under test and returns the result.
@@ -65,8 +69,6 @@ public abstract class SetTest {
         }
         return set;
     }
-
-    // TODO - add test cases for constructor, add, remove, removeAny, contains, and size
 
     /**
      * Test remove to an empty set.
@@ -162,15 +164,75 @@ public abstract class SetTest {
     @Test
     public final void testRemoveAnyFromMiddle() {
         Set<String> test = this.createFromArgsTest("1", "2", "3");
-        Set<String> expected = this.createFromArgsRef("1","2","3");
+        Set<String> expected = this.createFromArgsRef("1", "2", "3");
         String removed = test.removeAny();
-        
+
         assertEquals(true, expected.contains(removed));
         expected.remove(removed);
         assertEquals(test, expected);
     }
 
+    /**
+     * Test contains to set.
+     */
+    @Test
+    public final void testContainsTrueSmall() {
+        Set<String> test = this.createFromArgsTest("set");
+        boolean x = test.contains("set");
+        assertEquals(true, x);
+    }
+
+    /**
+     * Test contains to set.
+     */
+    @Test
+    public final void testContainsTrue() {
+        Set<String> test = this.createFromArgsTest("word", "hello", "set");
+        boolean x = test.contains("word");
+        assertEquals(true, x);
+    }
+
+    /**
+     * Test contains to set.
+     */
+    @Test
+    public final void testContainsFalse() {
+        Set<String> test = this.createFromArgsTest("word", "hello", "set");
+        boolean x = test.contains("hi");
+        assertEquals(false, x);
+    }
+
+    /**
+     * Test size to set.
+     */
+    @Test
+
+    public final void testSize() {
+        Set<String> test = this.createFromArgsTest("word", "hello", "set");
+        int i = test.size();
+        assertEquals(3, i);
+    }
+
+    /**
+     * Test size to set.
+     */
+    @Test
+    public final void testSizeLarge() {
+        Set<String> test = this.createFromArgsTest("hello", "get", "set", "tan",
+                "pink", "yellow", "hat");
+        int i = test.size();
+        assertEquals(7, i);
+    }
+
+    /**
+     * Test size to set.
+     */
+    @Test
+    public final void testSizeEmpty() {
+        Set<String> test = this.createFromArgsTest();
+        int i = test.size();
+        assertEquals(0, i);
+    }
+
 }
 
-
-}
