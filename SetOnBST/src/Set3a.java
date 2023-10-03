@@ -201,8 +201,9 @@ public class Set3a<T extends Comparable<T>> extends SetSecondary<T> {
             T root = t.disassemble(left, right);
             if(right.size() > 0){
             root = right.root();
-            }
             t.assemble(root, left, right);
+            }
+                t.transferFrom(left);
         }
         return entry;
 
