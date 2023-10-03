@@ -90,7 +90,7 @@ public abstract class SetTest {
     @Test
     public final void testRemove_lastName() {
         Set<String> test = this.createFromArgsTest("Sonu", "Manoharan");
-        Set<String> expected = this.createFromArgsRef();
+        Set<String> expected = this.createFromArgsRef("Sonu");
         String removed = test.remove("Manoharan");
         String expectedRemoved = "Manoharan";
 
