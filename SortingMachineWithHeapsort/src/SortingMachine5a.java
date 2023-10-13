@@ -179,8 +179,26 @@ public class SortingMachine5a<T> extends SortingMachineSecondary<T> {
          */
 
         // TODO - fill in body
+        int right = (top * 2) + 2;
+        int left = (2 * top) + 1;
         // *** you must use the recursive algorithm discussed in class ***
+         if (left <= last) {
+            if (order.compare(array[top], array[left]) >= 0) {
+                exchangeEntries(array, top, left);
+                siftDown(array, left, last, order);
+            }
+        } else if (left == last
+                && order.compare(array[top], array[left]) >= 0) {
+            exchangeEntries(array, top, left);
+        }
 
+        if (right <= last) {
+            if (order.compare(array[top], array[right]) >= 0) {
+                exchangeEntries(array, top, right);
+                siftDown(array, right, last, order);
+            }
+        }
+    
     }
 
     /**
@@ -499,11 +517,15 @@ public class SortingMachine5a<T> extends SortingMachineSecondary<T> {
     @Override
     public final int size() {
 
-        // TODO - fill in body
-
+        int size = 0;
+        if (this.insertionMode) {
+            size = this.entries.length();
+        } else {
+            size = this.heapSize;
+        }
         assert this.conventionHolds();
         // Fix this line to return the result after checking the convention.
-        return 0;
+        return size;
     }
 
     @Override
