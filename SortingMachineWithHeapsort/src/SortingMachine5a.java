@@ -244,6 +244,21 @@ public class SortingMachine5a<T> extends SortingMachineSecondary<T> {
         // TODO - fill in body
         // *** you must use the recursive algorithm discussed in class ***
 
+         int left = 2 * top + 1;
+        int right = 2 * top + 2;
+        
+        // checks if top index is within the array
+        if (top < array.length) {
+            heapify(array,left,order);
+            heapify(array,right,order);
+            
+            // siftDown sifts the root down to turn whole subtree into a heap
+            // Ensures current top position is in correct position in heap
+            siftDown(array,top,array.length-1,order);    
+            
+        }
+         
+
     }
 
     /**
@@ -282,7 +297,13 @@ public class SortingMachine5a<T> extends SortingMachineSecondary<T> {
         T[] heap = (T[]) (new Object[q.length()]);
 
         // TODO - fill in rest of body
-
+       // create array to represent heap
+        Array<T> heap = new Array1L<T>(q.length());
+        for (int i = 0; q.length() > 0; i++) {
+            heap.setEntry(i, q.dequeue());
+        }
+        heapify(heap, 0, order);
+        
         return heap;
     }
 
@@ -476,6 +497,8 @@ public class SortingMachine5a<T> extends SortingMachineSecondary<T> {
         assert this.isInInsertionMode() : "Violation of: this.insertion_mode";
 
         // TODO - fill in body
+        this.entries.enqueue(x);
+
 
         assert this.conventionHolds();
     }
