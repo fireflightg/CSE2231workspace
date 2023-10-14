@@ -140,4 +140,28 @@ public abstract class SortingMachineTest {
     // TODO - add test cases for add, changeToExtractionMode, removeFirst,
     // isInInsertionMode, order, and size
 
+    /**
+     * Test change to extraction
+     */
+    @Test
+    public final void testChangeToExtraction()
+    {
+        SortingMachine<String> test = this.createFromArgsTest(ORDER, true, "CSE");
+        SortingMachine<String> expected = this.createFromArgsRef(ORDER, false, "CSE");
+        test.changeToExtractionMode();
+        assertEquals(expected, test);
+    }
+    
+    /**
+     * Test change to extraction on empty Sorting Machine
+     */
+    @Test
+    public final void testChangeToExtractionOnEmpty()
+    {
+        SortingMachine<String> test = this.createFromArgsTest(ORDER, true);
+        SortingMachine<String> expected = this.createFromArgsRef(ORDER, false);
+        test.changeToExtractionMode();
+        assertEquals(expected, test);
+    }
+
 }
