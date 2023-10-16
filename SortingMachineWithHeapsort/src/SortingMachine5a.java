@@ -1,8 +1,13 @@
+
+
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
+import components.array.Array;
+import components.array.Array1L;
 import components.queue.Queue;
+import components.queue.Queue1L;
 import components.sortingmachine.SortingMachine;
 import components.sortingmachine.SortingMachineSecondary;
 
@@ -298,9 +303,9 @@ public class SortingMachine5a<T> extends SortingMachineSecondary<T> {
 
         // TODO - fill in rest of body
        // create array to represent heap
-        Array<T> heap = new Array1L<T>(q.length());
+      
         for (int i = 0; q.length() > 0; i++) {
-            heap.setEntry(i, q.dequeue());
+            heap[i] = q.dequeue();
         }
         heapify(heap, 0, order);
         
@@ -423,11 +428,10 @@ public class SortingMachine5a<T> extends SortingMachineSecondary<T> {
      */
     private void createNewRep(Comparator<T> order) {
 
-        this.insertionMode = true;
+this.insertionMode = true;
 this.machineOrder = order;
 this.entries = new Queue1L<>();
 this.heapSize = 0;
-
 
     }
 
@@ -525,25 +529,23 @@ this.heapSize = 0;
         assert !this
                 .isInInsertionMode() : "Violation of: not this.insertion_mode";
         assert this.size() > 0 : "Violation of: this.contents /= {}";
-
-         T r  = this.heap[0];
-       
+        
+        
+       T r  = this.heap[0];
        this.heapSize--;
+       
        
        //Removing the root
        
-       exchangeEntries(this.heap, 0,this.heapSize);
+      exchangeEntries(this.heap,0,this.heapSize);
+     
        
        siftDown(this.heap,0,this.heapSize-1, this.machineOrder);
        
 //Fix the tree 
         assert this.conventionHolds();
         // Fix this line to return the result after checking the convention.
-        return null;
-
-        assert this.conventionHolds();
-        // Fix this line to return the result after checking the convention.
-        return null;
+        return r;
     }
 
     @Override
@@ -641,6 +643,7 @@ this.heapSize = 0;
 
         @Override
         public void remove() {
+        	
             throw new UnsupportedOperationException(
                     "remove operation not supported");
         }
