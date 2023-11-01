@@ -251,15 +251,17 @@ public class List3<T> extends ListSecondary<T> {
     public final void advance() {
         assert this.rightLength() > 0 : "Violation of: this.right /= <>";
 
-        // TODO - fill in body
-
+        this.lastLeft = this.lastLeft.next;
+        this.rightLength--;
+        this.leftLength++;
         assert this.conventionHolds();
     }
 
     @Override
     public final void moveToStart() {
-
-        // TODO - fill in body
+        this.lastLeft = this.preStart;
+        this.rightLength = this.rightLength + this.leftLength;
+        this.leftLength = 0;
 
         assert this.conventionHolds();
     }
@@ -267,11 +269,10 @@ public class List3<T> extends ListSecondary<T> {
     @Override
     public final int leftLength() {
 
-        // TODO - fill in body
 
         assert this.conventionHolds();
         // Fix this line to return the result after checking the convention.
-        return 0;
+        return leftLength;
     }
 
     @Override
