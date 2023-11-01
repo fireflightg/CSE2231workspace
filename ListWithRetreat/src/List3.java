@@ -175,8 +175,13 @@ public class List3<T> extends ListSecondary<T> {
      * Creator of initial representation.
      */
     private void createNewRep() {
-
-        // TODO - fill in body
+        this.preStart = new Node();
+        this.postFinish = new Node();
+        this.lastLeft = this.preStart;
+        this.preStart.next = this.postFinish;
+        this.postFinish.previous = this.lastLeft;
+        this.leftLength = 0;
+        this.rightLength = 0;
 
     }
 
@@ -231,7 +236,14 @@ public class List3<T> extends ListSecondary<T> {
     public final void addRightFront(T x) {
         assert x != null : "Violation of: x is not null";
 
-        // TODO - fill in body
+        Node p = new Node();
+        Node q = this.lastLeft.next;
+        p.previous = this.lastLeft;
+        p.next = q;
+        this.lastLeft.next = p;
+        q.previous = p;
+        p.data = x;
+        this.rightLength++;
 
         assert this.conventionHolds();
     }
@@ -244,7 +256,7 @@ public class List3<T> extends ListSecondary<T> {
 
         assert this.conventionHolds();
         // Fix this line to return the result after checking the convention.
-        return null;
+        return this.rightLength;
     }
 
     @Override
