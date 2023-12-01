@@ -141,7 +141,7 @@ public final class Statement1Parse1 extends Statement1 {
      * Public methods ---------------------------------------------------------
      */
 
-    @Override
+     @Override
     public void parse(Queue<String> tokens) {
         assert tokens != null : "Violation of: tokens is not null";
         assert tokens.length() > 0 : ""
@@ -164,11 +164,13 @@ public final class Statement1Parse1 extends Statement1 {
         assert tokens.length() > 0 : ""
                 + "Violation of: Tokenizer.END_OF_INPUT is a suffix of tokens";
 
-        // Create a new Statement to parse a block
+     // Create a new Statement to parse a block
         Statement newStatement = this.newInstance();
 
-        // Continue parsing until the end of the input is reached
-        while (!tokens.front().equals(Tokenizer.END_OF_INPUT)) {
+        // Continue parsing until the end of the input is reached or an END or ELSE is encountered
+        while (!tokens.front().equals(Tokenizer.END_OF_INPUT) &&
+               !tokens.front().equals("END") &&
+               !tokens.front().equals("ELSE")) {
             // Parse the next statement and add it to the block
             newStatement.parse(tokens);
         }
