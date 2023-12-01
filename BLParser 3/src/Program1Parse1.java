@@ -91,8 +91,37 @@ public final class Program1Parse1 extends Program1 {
         assert tokens.length() > 0 : ""
                 + "Violation of: Tokenizer.END_OF_INPUT is a suffix of tokens";
 
-        // TODO - fill in body
 
+        String start  = tokens.dequeue(); 
+        Reporter.assertElseFatalError(start.equals("PROGRAM"),"PROGRAM STATMENT NEEDED");
+        String startname = tokens.dequeue();
+        boolean t = Tokenizer.isIdentifier(startname);
+        Reporter.assertElseFatalError(t, "INVALID NAME");
+        String ischeck = tokens.dequeue();
+        Reporter.assertElseFatalError(ischeck.equals("IS"), "INVALID NAME");
+        Map<String, Statement> bl = this.newContext();
+        while (tokens.front().equals("INSTRUCTION")) {
+
+ Statement inbody = this.newBody();
+ String inname = parseInstruction(tokens, inbody);
+ bl.add(inname, inbody);
+ 
+
+    }
+        String begin = tokens.dequeue();
+    Reporter.assertElseFatalError(tokens.length() > 0 && begin.equals("BEGIN"),"BEGIN STATMENT NEEDED");
+    Statement body = this.newBody();
+     body.parseBlock(tokens);
+     String ending = tokens.dequeue();
+     Reporter.assertElseFatalError(ending.equals("END"), "NO END TAGS");
+     String endingname = tokens.dequeue();
+ Reporter.assertElseFatalError(endingname.equals(startname),"No name for ending tag");
+ Reporter.assertElseFatalError(tokens.length() > 0,"Program should have no more values");
+         this.setName(startname);
+         this.swapContext(bl);
+         this.swapBody(body);
+ String endOfInput = tokens.dequeue();
+ Reporter.assertElseFatalError(endOfInput.equals(Tokenizer.END_OF_INPUT),"Unpexpected line");
     }
 
     /*
