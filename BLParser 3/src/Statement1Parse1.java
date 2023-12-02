@@ -74,6 +74,22 @@ public final class Statement1Parse1 extends Statement1 {
         block.parseBlock(tokens);
         String endOrElse = tokens.dequeue();
         Reporter assertElseFatalError(endOrElse.equals("END") || endOrElse("ELSE"), "INVALID NAME");
+
+        if(endOrElse.equals("END")) {
+            String if = tokens.dequeue();
+            Reporter.assertElseFatalError(if.equals("IF"), "INVALID NAME");
+            s.assembleIf(con, block);
+        }
+        else {
+            Statement block2 = s.newInstance();
+            block2.parseBlock(tokens);
+            String end = tokens.dequeue();
+            Reporter.assertElseFatalError(end.equals("END"), "INVALID NAME");
+            String if = tokens.dequeue();
+            Reporter.assertElseFatalError(if.equals("IF"), "INVALID NAME");
+            s.assembleIfElse(con, block, block2);
+        }
+
         
     }
 
@@ -105,6 +121,19 @@ public final class Statement1Parse1 extends Statement1 {
                 + "Violation of: <\"WHILE\"> is proper prefix of tokens";
 
         // TODO - fill in body
+        tokens.dequeue();
+        String condition = tokens.dequeue();
+        Reporter.assertElseFatalError(Tokenizer.isCondition(condition), "INVALID NAME");
+        Condition con = parseCondition(condition);
+        String do = tokens.dequeue();
+        Reporter.assertElseFatalError(do.equals("DO"), "INVALID NAME");
+        Statement block = s.newInstance();
+        block.parseBlock(tokens);
+        String end = tokens.dequeue();
+        Reporter.assertElseFatalError(end.equals("END"), "INVALID NAME");
+        String while = tokens.dequeue();
+        Reporter.assertElseFatalError(while.equals("WHILE"), "INVALID NAME");
+        s.assembleWhile(con, block);
 
     }
 
