@@ -57,9 +57,19 @@ public final class Program1Parse1 extends Program1 {
                 + "Violation of: <\"INSTRUCTION\"> is proper prefix of tokens";
 
         // TODO - fill in body
+        tokens.dequeue();
+        String name = tokens.dequeue();
+        Reporter.assertElseFatalError(Tokenizer.isIdentifier(name), "INVALID NAME");
+        String i = tokens.dequeue();
+        Reporter.assertElseFatalError(i.equals("IS"), "INVALID NAME");
+        body.parseBlock(tokens);
+        String e = tokens.dequeue();
+        Reporter.assertElseFatalError(e.equals("END"), "INVALID NAME");
+        String n = tokens.dequeue();
+        Reporter.assertElseFatalError(n.equals(name), "INVALID NAME");
 
         // This line added just to make the program compilable.
-        return null;
+        return name;
     }
 
     /*
