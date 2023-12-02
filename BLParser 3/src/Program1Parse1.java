@@ -56,7 +56,7 @@ public final class Program1Parse1 extends Program1 {
         assert tokens.length() > 0 && tokens.front().equals("INSTRUCTION") : ""
                 + "Violation of: <\"INSTRUCTION\"> is proper prefix of tokens";
 
-        // TODO - fill in body
+        
         tokens.dequeue();
         String name = tokens.dequeue();
         Reporter.assertElseFatalError(Tokenizer.isIdentifier(name), "INVALID NAME");
