@@ -64,7 +64,17 @@ public final class Statement1Parse1 extends Statement1 {
                 + "Violation of: <\"IF\"> is proper prefix of tokens";
 
         // TODO - fill in body
-
+        tokens.dequeue();
+        String condition = tokens.dequeue();
+        Reporter.assertElseFatalError(Tokenizer.isCondition(condition), "INVALID NAME");
+        Condition con = parseCondition(condition);
+        String then = tokens.dequeue();
+        Reporter.assertElseFatalError(then.equals("THEN"), "INVALID NAME");
+        Statement block = s.newInstance();
+        block.parseBlock(tokens);
+        String endOrElse = tokens.dequeue();
+        Reporter assertElseFatalError(endOrElse.equals("END") || endOrElse("ELSE"), "INVALID NAME");
+        
     }
 
     /**
