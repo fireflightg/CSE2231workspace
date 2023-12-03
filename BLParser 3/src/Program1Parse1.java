@@ -68,6 +68,13 @@ public final class Program1Parse1 extends Program1 {
         String n = tokens.dequeue();
         Reporter.assertElseFatalError(n.equals(name), "INVALID NAME");
 
+        body.parseBlock(tokens);
+                String ending = tokens.dequeue();
+            Reporter.assertElseFatalError(tokens.length() > 0 && ending.equals("END"), "NO END TAGS");
+        String endingname = tokens.dequeue();
+        Reporter.assertElseFatalError(endingname.equals(name),"No Name for ending tag");
+Reporter.assertElseFatalError(tokens.length() > 0,"Instruction should have no more values");
+
         // This line added just to make the program compilable.
         return name;
     }
